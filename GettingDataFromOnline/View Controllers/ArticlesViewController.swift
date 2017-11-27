@@ -33,6 +33,12 @@ class ArticlesViewController: UIViewController {
                                              completionHandler: completion, errorHandler: {print($0)})
         
     }
+    //MARK -- Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ArticleDetailViewController {
+            destination.article = articles[self.tableView.indexPathForSelectedRow!.row]
+        }
+    }
 }
 extension ArticlesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,11 +51,5 @@ extension ArticlesViewController: UITableViewDataSource {
         cell.textLabel?.text = article.headline
         cell.detailTextLabel?.text = article.source
         return cell
-    }
-    //MARK -- Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? ArticleDetailViewController {
-            destination.article = articles[self.tableView.indexPathForSelectedRow!.row]
-        }
     }
 }

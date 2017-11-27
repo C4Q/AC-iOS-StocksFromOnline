@@ -11,7 +11,7 @@ import Foundation
 class NetworkHelper {
     private init() {}
     static let manager = NetworkHelper()
-    let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+    private let urlSession = URLSession(configuration: URLSessionConfiguration.default)
     func performDataTask(with url: URL, completionHandler: @escaping ((Data) -> Void), errorHandler: @escaping ((Error) -> Void)) {
         self.urlSession.dataTask(with: url){(data: Data?, response: URLResponse?, error: Error?) in
             DispatchQueue.main.async {
